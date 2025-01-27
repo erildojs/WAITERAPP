@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(router)
 
 
-mongoose.connect('mongodb://localhost:27017')
+mongoose.connect('mongodb://db_waiterapp:27017/waiterappdb')
   .then(() => console.log('conectado no mongo'))
   .catch(() => console.log('nao conectado no mongo'))
 
