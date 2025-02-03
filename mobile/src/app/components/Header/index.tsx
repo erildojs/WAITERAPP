@@ -5,9 +5,10 @@ import React from "react";
 
 type HeaderProps = {
   selectedTable: string;
+  onCancelOrder: () => void;
 }
 
-export function Header({ selectedTable }: HeaderProps) {
+export function Header({ selectedTable, onCancelOrder }: HeaderProps) {
   return (
     <Container>
       {!selectedTable && (
@@ -22,7 +23,7 @@ export function Header({ selectedTable }: HeaderProps) {
             <Text size={24} weght="600">
               Pedido
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onCancelOrder}>
               <Text color="#D73035" weght="600" size={14}>cancelar pedido</Text>
             </TouchableOpacity>
           </OrderHeader>
