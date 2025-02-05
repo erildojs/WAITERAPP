@@ -25,5 +25,5 @@ padding: 16px 24px;
 `
 
 export const FooterContainer = styled.SafeAreaView`
-
+  
 `

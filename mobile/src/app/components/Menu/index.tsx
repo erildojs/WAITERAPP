@@ -1,35 +1,58 @@
 import { products } from "@/app/mocks/products";
-import { FlatList, TouchableOpacity } from "react-native";
+import { FlatList } from "react-native";
 import { Text } from "../Text";
-import { AddToCardButton, Image, Product, ProductDetails, Separator } from "./styles";
+import { AddToCardButton, Image, ProductContainer, ProductDetails, Separator } from "./styles";
 import { formatCurrency } from "@/app/utils/formatCurrency";
 import { PlusCircle } from "../Icons/PlusCircle";
+import { ProductModal } from "../ProductModal";
+import React, { useState } from "react";
+import { Product } from "@/app/types/Product";
 
-export function Menu() {
+type MenuProps = {
+  onAddToCart: (product: Product) => void;
+}
+
+export function Menu({ onAddToCart }: MenuProps) {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<null | Product>(null);
+  function handleOpenModal(product: Product) {
+    setIsModalVisible(true);
+    setSelectedProduct(product)
+  }
+
   return (
-    <FlatList
-      data={products}
-      keyExtractor={product => product._id}
-      style={{ marginTop: 32 }}
-      contentContainerStyle={{ paddingHorizontal: 24 }}
-      ItemSeparatorComponent={Separator}
-      renderItem={({ item: product }) => (
-        <Product>
-          <Image
-            //no mandroid o endereço é o ip
-            source={{ uri: `http://192.168.0.252:3001/uploads/${product.imagePath}` }}
-          />
-          <ProductDetails>
-            <Text weight="600">{product.name}</Text>
-            <Text size={14} color="#666" style={{ marginVertical: 8 }}>{product.description}</Text>
-            <Text size={14} weight="600">{formatCurrency(product.price)}</Text>
-          </ProductDetails>
+    <>
+      <ProductModal visible={isModalVisible}
+        onClose={() => setIsModalVisible(false)}
+        product={selectedProduct}
+        onAddToCart={onAddToCart}
+      />
+      <FlatList
+        data={products}
+        keyExtractor={product => product._id}
+        style={{ marginTop: 32 }}
+        contentContainerStyle={{ paddingHorizontal: 24 }}
+        ItemSeparatorComponent={Separator}
+        renderItem={({ item: product }) => (
+          <ProductContainer onpress={() => handleOpenModal(product)}
+          >
+            <Image
+              //no mandroid o endereço é o ip
+              source={{ uri: `http://192.168.0.252:3001/uploads/${product.imagePath}` }}
+            />
+            <ProductDetails>
+              <Text weight="600">{product.name}</Text>
+              <Text size={14} color="#666" style={{ marginVertical: 8 }}>{product.description}</Text>
+              <Text size={14} weight="600">{formatCurrency(product.price)}</Text>
+            </ProductDetails>
 
-          <AddToCardButton onPress={() => { }}>
-            <PlusCircle />
-          </AddToCardButton>
-        </Product>
-      )}
-    />
+            <AddToCardButton onPress={() => onAddToCart(product)}>
+              <PlusCircle />
+            </AddToCardButton>
+          </ProductContainer>
+        )
+        }
+      />
+    </>
   )
 }
