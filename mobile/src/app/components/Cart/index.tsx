@@ -19,6 +19,7 @@ type CartProps = {
 
 export function Cart({ cartItems, onAdd, onDecrement, onConfirmOrder }: CartProps) {
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isLoading] = useState(false)
   const total = cartItems.reduce((total, cartItem) => total + cartItem.product.price * cartItem.quantity, 0)
   function handleConfirmOrder() {
     setIsModalVisible(true)
@@ -76,7 +77,13 @@ export function Cart({ cartItems, onAdd, onDecrement, onConfirmOrder }: CartProp
             <Text color="#999">Seu carrinho está vazio</Text>
           )}
         </TotalContainer>
-        <Button onPress={handleConfirmOrder} disabled={cartItems.length === 0}>Confirmar pedido</Button>
+        <Button
+          onPress={handleConfirmOrder}
+          disabled={cartItems.length === 0}
+          loading={isLoading}
+        >
+          Confirmar pedido
+        </Button>
       </Summary>
     </>
   )

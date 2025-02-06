@@ -10,9 +10,10 @@ import { Product } from "@/app/types/Product";
 
 type MenuProps = {
   onAddToCart: (product: Product) => void;
+  products: Product[];
 }
 
-export function Menu({ onAddToCart }: MenuProps) {
+export function Menu({ onAddToCart, products }: MenuProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<null | Product>(null);
   function handleOpenModal(product: Product) {
