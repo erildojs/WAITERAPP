@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CategoriesContainer, CenteredContainer, Container, Footer, FooterContainer, MenuContainer } from "./styles";
 import { Header } from "../components/Header";
 import { Categories } from "../components/Categories";
@@ -12,13 +12,27 @@ import { ActivityIndicator } from "react-native";
 import { products as mockProducts } from "../mocks/products";
 import { Empty } from "../components/Icons/Empty";
 import { Text } from "../components/Text";
+import { Category } from "../types/Category";
+import axios, { get } from 'axios'
 
 export function Main() {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedTable, setSelectedTable] = useState('');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [products, setProducts] = useState<Product[]>(mockProducts);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    Promise.all([
+      get('http://172.30.232.76:8081/categories'),
+      get('http://172.30.232.76:8081/products')
+    ]).then(([categoriesResponse, productsResponse]) => {
+      setCategories(categoriesResponse.data as Category[])
+      setProducts(productsResponse.data as Product[])
+      setIsLoading(false)
+    })
+  }, []);
 
   function handleSaveTable(table: string) {
     setSelectedTable(table)

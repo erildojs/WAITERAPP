@@ -16,7 +16,6 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-between;
   
-
   .page-details {
     h1 {
       color: #fff;
