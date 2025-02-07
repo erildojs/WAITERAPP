@@ -21,6 +21,7 @@ export function Main() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -35,14 +36,14 @@ export function Main() {
 
   async function handleSelectCategory(categoryId: string) {
     const route = !categoryId ? '/products' : `/categories/${categoryId}/products`
+    setIsLoadingProducts(true)
     const { data } = await api.get(route)
     setProducts(data as Product[])
+    setIsLoadingProducts(false)
   }
-
   function handleSaveTable(table: string) {
     setSelectedTable(table)
   }
-
   function handleCancelOrder() {
     setSelectedTable('')
     setCartItems([])
@@ -65,7 +66,6 @@ export function Main() {
       return newCartItems
     })
   }
-
   function handleDecrementCartItem(product: Product) {
 
     setCartItems((prevState) => {
@@ -83,7 +83,6 @@ export function Main() {
       return newCartItems
     })
   }
-
   function handleResetOrder() {
     setSelectedTable('')
     setCartItems([])
@@ -108,16 +107,25 @@ export function Main() {
             </MenuContainer>
           </>
         )}
-        {products.length > 0 ? (
-          <MenuContainer>
-            <Menu onAddToCart={handleAddToCart} products={products} />
-          </MenuContainer>
-        ) : (
+        {isLoadingProducts ? (
           <CenteredContainer>
-            <Empty />
-            <Text style={{ marginTop: 24 }} color="#666">Nenhum produto foi encontrado</Text>
+            <ActivityIndicator size="large" color="#D73035" />
           </CenteredContainer>
+        ) : (
+          <>
+            {products.length > 0 ? (
+              <MenuContainer>
+                <Menu onAddToCart={handleAddToCart} products={products} />
+              </MenuContainer>
+            ) : (
+              <CenteredContainer>
+                <Empty />
+                <Text style={{ marginTop: 24 }} color="#666">Nenhum produto foi encontrado</Text>
+              </CenteredContainer>
+            )}
+          </>
         )}
+
       </Container>
       <Footer>
         <FooterContainer>//se der erro eh so comentar isso
@@ -134,6 +142,7 @@ export function Main() {
               onAdd={handleAddToCart}
               onDecrement={handleDecrementCartItem}
               onConfirmOrder={handleResetOrder}
+              selectedTable={selectedTable}
             />
           )}
         </FooterContainer>
