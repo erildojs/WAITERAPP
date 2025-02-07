@@ -4,14 +4,16 @@ import { CategoryContainer, Icon } from "./styles";
 import { FlatList } from "react-native";
 import { Category } from "@/app/types/Category";
 
-type CategoryProps = {
+type CategoriesProps = {
   categories?: Category[]
+  onSelectCategory: (categoryId: string) => Promise<void>
 }
 
-export function Categories({ categories }: CategoryProps) {
+export function Categories({ categories, onSelectCategory }: CategoriesProps) {
   const [selectedCategory, setSelectedCategory] = useState('')
   function handleSelectCategory(categoryId: string) {
-    const category = selectedCategory === categoryId ? null : categoryId
+    const category = selectedCategory === categoryId ? '' : categoryId
+    onSelectCategory(category)
     setSelectedCategory(categoryId)
   }
 

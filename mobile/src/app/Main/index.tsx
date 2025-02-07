@@ -9,11 +9,10 @@ import { Cart } from "../components/Cart";
 import { CartItem } from "../types/CartItem";
 import { Product } from "../types/Product";
 import { ActivityIndicator } from "react-native";
-import { products as mockProducts } from "../mocks/products";
 import { Empty } from "../components/Icons/Empty";
 import { Text } from "../components/Text";
 import { Category } from "../types/Category";
-import axios, { get } from 'axios'
+import { api } from "../utils/api";
 
 export function Main() {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
@@ -25,14 +24,20 @@ export function Main() {
 
   useEffect(() => {
     Promise.all([
-      get('http://172.30.232.76:8081/categories'),
-      get('http://172.30.232.76:8081/products')
+      api.get('/categories'),
+      api.get('/products')
     ]).then(([categoriesResponse, productsResponse]) => {
       setCategories(categoriesResponse.data as Category[])
       setProducts(productsResponse.data as Product[])
       setIsLoading(false)
     })
   }, []);
+
+  async function handleSelectCategory(categoryId: string) {
+    const route = !categoryId ? '/products' : `/categories/${categoryId}/products`
+    const { data } = await api.get(route)
+    setProducts(data as Product[])
+  }
 
   function handleSaveTable(table: string) {
     setSelectedTable(table)
@@ -96,7 +101,7 @@ export function Main() {
         {!isLoading && (
           <>
             <CategoriesContainer>
-              <Categories />
+              <Categories categories={categories} onSelectCategory={handleSelectCategory} />
             </CategoriesContainer>
             <MenuContainer>
               <Menu onAddToCart={handleAddToCart} products={products} />
