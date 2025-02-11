@@ -8,10 +8,13 @@ type OverlayProps = {
   visible: boolean
   order: Order | null
   onClose: () => void
+  onCancelOrder: () => Promise<void>
+  isLoading: boolean
+  onChangeOrderStatus: () => void
 }
 
-export function OrderModal({ visible, order, onClose }: OverlayProps) {
-  //fechao o modal com esc
+export function OrderModal({ visible, order, onClose, onCancelOrder, isLoading, onChangeOrderStatus }: OverlayProps) {
+  //fechar o modal com esc
   useEffect(() => {
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
@@ -42,12 +45,12 @@ export function OrderModal({ visible, order, onClose }: OverlayProps) {
           <div>
             <span>
               {order.status === 'WAITING' && '🕐'}
-              {order.status === 'iN_PRODUCTION' && '👨‍🍳'}
+              {order.status === 'IN_PRODUCTION' && '👨‍🍳'}
               {order.status === 'DONE' && '✅'}
             </span>
             <strong>
               {order.status === 'WAITING' && 'Fila de espera'}
-              {order.status === 'iN_PRODUCTION' && 'Em produçao'}
+              {order.status === 'IN_PRODUCTION' && 'Em produçao'}
               {order.status === 'DONE' && 'Pronto'}
             </strong>
           </div>
@@ -75,11 +78,17 @@ export function OrderModal({ visible, order, onClose }: OverlayProps) {
         </OrderDetails>
 
         <Actions>
-          <button type="button" className="primary">
-            <span>👨‍🍳</span>
-            <strong>Iniciar Produçao</strong>
-          </button>
-          <button type="button" className="secondary">
+          {order.status !== 'DONE' && (
+            <button type="button" className="primary" disabled={isLoading} onClick={onChangeOrderStatus}>
+              <span>{order.status === 'WAITING' && '👨‍🍳'}</span>
+              <span>{order.status === 'IN_PRODUCTION' && '✅'}</span>
+              <strong>
+                <span>{order.status === 'WAITING' && 'Iniciar Produçao'}</span>
+                <span>{order.status === 'IN_PRODUCTION' && 'Concluir Pedido'}</span>
+              </strong>
+            </button>
+          )}
+          <button type="button" className="secondary" onClick={onCancelOrder} disabled={isLoading}>
             Cancelar Pedido
           </button>
         </Actions>
