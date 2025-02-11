@@ -5,6 +5,7 @@ import multer from 'multer';
 import path from 'node:path'
 import { fileURLToPath } from "node:url";
 import { Order } from "./models/Order.ts";
+import { io } from "./server.ts";
 
 export const router = Router()
 
@@ -58,21 +59,22 @@ router.get('/categories/:categoryId/products', async (request, response) => {
 })
 
 router.get('/orders', async (request, response) => {
-  //populate() e usado para trazer tbm as infos do relacionamento da outra table
+  //populate() é usado para trazer tbm as infos do relacionamento da outra table
   const orders = await Order.find().populate('products.product').sort({ created_at: 1 })
   response.json(orders)
 })
 
 router.post('/orders', async (request, response) => {
   const { table, products } = request.body
-  const orders = await Order.create({ table, products })
-  response.json(orders)
+  const order = await Order.create({ table, products })
+  const orderDetails = await order.populate('products.product')
+  io.emit('orders@new', orderDetails)
+  response.json(order)
 })
 
 router.patch('/orders/:orderId', async (request, response) => {
   const { orderId } = request.params
   const { status } = request.body
-
   if (!['WAITING', 'IN_PRODUCTION', 'DONE'].includes(status)) {
     response.status(400).json({
       error: 'status should be one of theses, WAITING, IN_PRODUCTION, DONE'
@@ -83,7 +85,6 @@ router.patch('/orders/:orderId', async (request, response) => {
   })
   response.sendStatus(204)
 })
-
 
 router.delete('/orders/:orderId', async (request, response) => {
   const { orderId } = request.params
