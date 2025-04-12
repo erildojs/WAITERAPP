@@ -23,7 +23,8 @@ app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')))
 app.use(express.json())
 app.use(router)
 
-mongoose.connect('mongodb://db_waiterapp:27017/waiterappdb')
+// mongoose.connect('mongodb://db_waiterapp:27017/waiterappdb')
+mongoose.connect('mongodb://localhost:27017/waiterappdb')
   .then(() => console.log('conectado no mongo'))
   .catch(() => console.log('não conectado no mongo'))
 
