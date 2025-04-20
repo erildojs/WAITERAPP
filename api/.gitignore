@@ -1,1 +1,8 @@
 node_modules
+.vscode
+uploads/*
+coverage
+.env
+!uploads/.gitkeep
+dist
+package-lock.json
