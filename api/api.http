@@ -1,0 +1,58 @@
+GET http://localhost:3333/categories
+Content-Type: application/json
+
+###
+POST http://localhost:3333/categories
+Content-Type: application/json
+
+{
+  "icon": "🍕",
+  "name": "pizza"
+}
+
+###
+POST http://localhost:3333/products
+Content-Type: application/json
+#upload file config missing
+{
+  "name": "", 
+  "description": "",
+   "price": "", 
+   "category": "", 
+   "ingredients": ""
+}
+
+###
+GET http://localhost:3333/products
+Content-Type: application/json
+
+###
+GET http://localhost:3333/categories/:categoryId/products
+Content-Type: application/json
+#params missing categoryId
+
+
+###
+GET http://localhost:3333/orders
+Content-Type: application/json
+
+###
+POST http://localhost:3333/orders
+Content-Type: application/json
+
+{
+  "table": "", 
+  "products": ""
+}
+
+###
+PATCH http://localhost:3333/orders/:orderId
+Content-Type: application/json
+
+{
+  "status": ""
+}
+
+###
+DELETE http://localhost:3333/orders/:orderId
+Content-Type: application/json
