@@ -11,6 +11,33 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:3333/categories
+Content-Type: application/json
+
+{
+	"icon": "🍺",
+	"name": "bebidas"
+}
+
+###
+POST http://localhost:3333/categories
+Content-Type: application/json
+
+{
+	"icon": "🍕",
+	"name": "hamburgueres"
+}
+
+###
+POST http://localhost:3333/categories
+Content-Type: application/json
+
+{
+	"icon": "📋",
+	"name": "promoçoes"
+}
+
+###
 POST http://localhost:3333/products
 Content-Type: application/json
 #upload file config missing
