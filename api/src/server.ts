@@ -1,13 +1,10 @@
 import express from 'express'
 import mongoose from 'mongoose';
-import { router } from './routes.ts';
-import path from 'node:path'
-import { fileURLToPath } from 'url';
+import { router } from './routes.js';
 import http from 'node:http'
 import { Server } from 'socket.io';
+import path from 'node:path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express()
 const server = http.createServer(app)
@@ -19,11 +16,10 @@ app.use((request, response, next) => {//isso está aqui pk o cors não esta func
   response.header('Access-Control-Allow-Headers', '*')
   next()
 })
-app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')))
+app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 app.use(express.json())
 app.use(router)
 
-// mongoose.connect('mongodb://db_waiterapp:27017/waiterappdb')
 mongoose.connect('mongodb://localhost:27017/waiterappdb')
   .then(() => console.log('conectado no mongo'))
   .catch(() => console.log('não conectado no mongo'))

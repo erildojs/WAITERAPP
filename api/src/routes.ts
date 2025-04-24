@@ -1,16 +1,13 @@
 import { Router } from "express";
-import { Category } from "./models/Category.ts";
-import { Product } from "./models/Product.ts";
+import { Category } from "./models/Category";
+import { Product } from "./models/Product";
 import multer from 'multer';
-import path from 'node:path'
+import path from 'node:path';
 import { fileURLToPath } from "node:url";
-import { Order } from "./models/Order.ts";
-import { io } from "./server.ts";
+import { Order } from "./models/Order";
+import { io } from "./server";
 
 export const router = Router()
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const upload = multer({
   storage: multer.diskStorage({
