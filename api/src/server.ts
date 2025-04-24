@@ -1,3 +1,4 @@
+import "dotenv/config"
 import express from 'express'
 import mongoose from 'mongoose';
 import { router } from './routes.js';
@@ -24,6 +25,6 @@ mongoose.connect('mongodb://localhost:27017/waiterappdb')
   .then(() => console.log('conectado no mongo'))
   .catch(() => console.log('não conectado no mongo'))
 
-server.listen(3333, () => {
+server.listen(process.env.API_PORT, () => {
   console.log('server is running 🚀');
 })
