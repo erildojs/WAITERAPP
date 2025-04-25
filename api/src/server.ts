@@ -21,10 +21,11 @@ app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 app.use(express.json())
 app.use(router)
 
-mongoose.connect('mongodb://localhost:27017/waiterappdb')
-  .then(() => console.log('conectado no mongo'))
+mongoose.connect(process.env.DATABASE_URL)
+  .then(() => {
+    console.log('conectado no mongo')
+    server.listen(process.env.API_PORT, () => {
+      console.log('server is running 🚀');
+    })
+  })
   .catch(() => console.log('não conectado no mongo'))
-
-server.listen(process.env.API_PORT, () => {
-  console.log('server is running 🚀');
-})
