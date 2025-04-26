@@ -24,7 +24,7 @@ app.use(router)
 mongoose.connect(process.env.DATABASE_URL)
   .then(() => {
     console.log('conectado no mongo')
-    server.listen(process.env.API_PORT, () => {
+    server.listen(process.env.API_PORT || 3333, () => {
       console.log('server is running 🚀');
     })
   })
