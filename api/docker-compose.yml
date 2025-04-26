@@ -7,19 +7,19 @@ services:
       - 27017:27017
     environment:
       - POSTGRES_DB=waiterappdb
-    #volumes:
-     # - pgdata:/data/mongo
-    # network_mode: host
+    volumes:
+      - pgdata:/data/mongo
+    network_mode: host
 
-  #app:
-   # build: .
-    #container_name: waiterapp
-    #ports:
-     # - 3334:3334
-    #volumes:
-     # - .:/usr/app
-    # network_mode: host
+  app:
+    build: .
+    container_name: waiterapp
+    ports:
+      - 3334:3334
+    volumes:
+      - .:/usr/app
+    network_mode: host
 
-#volumes:
- # pgdata:
-  #  driver: local
+volumes:
+  pgdata:
+    driver: local
