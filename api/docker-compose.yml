@@ -2,25 +2,14 @@ services:
   database:
     image: bitnami/postgresql
     container_name: db_waiterapp
-    restart: always
     ports:
       - 5432:5432
     environment:
       - POSTGRESQL_USERNAME=iurd
       - POSTGRESQL_PASSWORD=iurd
-      - POSTGRESQL_DATABASE=dbwaiterapp
+      - POSTGRESQL_DATABASE=waiterapp
     volumes:
       - pgdata:/data/postgres
-    network_mode: host
-
-  app:
-    build: .
-    container_name: waiterapp
-    ports:
-      - 3334:3334
-    volumes:
-      - .:/usr/app
-    network_mode: host
 
 volumes:
   pgdata:

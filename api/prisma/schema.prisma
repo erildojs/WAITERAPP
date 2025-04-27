@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String
+  icon      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Product   Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  imagePath   String
+  price       Int
+  ingredients String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  String
+
+  @@map("products")
+}
+
+model Ingredient {
+  id        Int      @id @default(autoincrement())
+  name      String
+  icon      String
+  pedidoId  Int
+  Order     Order?   @relation(fields: [orderId], references: [id])
+  orderId   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ingredients")
+}
+
+model Order {
+  id          String       @id @default(cuid())
+  table       String
+  status      Status       @default(WAITING)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  quantity    Int          @default(1)
+  ingredients Ingredient[]
+
+  @@map("orders")
+}
+
+enum Status {
+  WAITING
+  IN_PRODUCTION
+  DONE
+}
