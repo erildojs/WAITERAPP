@@ -1,14 +1,16 @@
 services:
   database:
-    image: mongo
+    image: bitnami/postgresql
     container_name: db_waiterapp
     restart: always
     ports:
-      - 27017:27017
+      - 5432:5432
     environment:
-      - POSTGRES_DB=waiterappdb
+      - POSTGRESQL_USERNAME=iurd
+      - POSTGRESQL_PASSWORD=iurd
+      - POSTGRESQL_DATABASE=dbwaiterapp
     volumes:
-      - pgdata:/data/mongo
+      - pgdata:/data/postgres
     network_mode: host
 
   app:
