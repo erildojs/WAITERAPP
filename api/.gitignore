@@ -6,3 +6,4 @@ coverage
 !uploads/.gitkeep
 dist
 package-lock.json
+generated
