@@ -1,12 +1,11 @@
-import { products } from "@/app/mocks/products";
-import { FlatList } from "react-native";
-import { Text } from "../Text";
-import { AddToCardButton, Image, ProductContainer, ProductDetails, Separator } from "./styles";
+import { Product } from "@/app/types/Product";
 import { formatCurrency } from "@/app/utils/formatCurrency";
+import React, { useState } from "react";
+import { FlatList } from "react-native";
 import { PlusCircle } from "../Icons/PlusCircle";
 import { ProductModal } from "../ProductModal";
-import React, { useState } from "react";
-import { Product } from "@/app/types/Product";
+import { Text } from "../Text";
+import { AddToCardButton, Image, ProductContainer, ProductDetails, Separator } from "./styles";
 
 type MenuProps = {
   onAddToCart: (product: Product) => void;
@@ -35,7 +34,7 @@ export function Menu({ onAddToCart, products }: MenuProps) {
         contentContainerStyle={{ paddingHorizontal: 24 }}
         ItemSeparatorComponent={Separator}
         renderItem={({ item: product }) => (
-          <ProductContainer onpress={() => handleOpenModal(product)}
+          <ProductContainer onPress={() => handleOpenModal(product)}
           >
             <Image
               //no mandroid o endereço é o ip

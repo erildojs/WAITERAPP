@@ -5,7 +5,7 @@ export const ProductContainer = styled.TouchableOpacity`
     align-items: center;
 `
 
-export const Image = styled.View`
+export const Image = styled.Image`
     width: 120px;
     height: 96px;
     border-radius: 8px;

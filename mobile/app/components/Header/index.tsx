@@ -1,7 +1,7 @@
-import { TouchableOpacity, View } from "react-native";
+import React from "react";
+import { TouchableOpacity } from "react-native";
 import { Text } from "../Text";
 import { Container, Content, OrderHeader, Table } from "./styles";
-import React from "react";
 
 type HeaderProps = {
   selectedTable: string;
@@ -20,11 +20,11 @@ export function Header({ selectedTable, onCancelOrder }: HeaderProps) {
       {selectedTable && (
         <Content>
           <OrderHeader>
-            <Text size={24} weght="600">
+            <Text size={24} weight="600">
               Pedido
             </Text>
             <TouchableOpacity onPress={onCancelOrder}>
-              <Text color="#D73035" weght="600" size={14}>cancelar pedido</Text>
+              <Text color="#D73035" weight="600" size={14}>cancelar pedido</Text>
             </TouchableOpacity>
           </OrderHeader>
           <Table>

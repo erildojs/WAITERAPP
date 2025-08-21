@@ -1,9 +1,9 @@
+import { useState } from "react";
 import { Modal, Platform, TouchableOpacity } from "react-native";
+import { Button } from "../Button";
+import { Close } from "../Icons/Close";
 import { Text } from "../Text";
 import { Form, Header, Input, ModalBody, Overlay } from "./styles";
-import { Close } from "../Icons/Close";
-import { Button } from "../Button";
-import { useState } from "react";
 
 type TableModalProps = {
   visible: boolean;
@@ -36,7 +36,7 @@ export function TableModal({ visible, onClose, onSave }: TableModalProps) {
             <Input placeholder="Número da mesa"
               placeholderTextColor="#666"
               keyboardType="number-pad"
-              onchangeText={(value: any) => setTable(value)}
+              onChangeText={(value: any) => setTable(value)}
             />
             <Button
               onPress={handleSave} disabled={table.length === 0}

@@ -13,7 +13,7 @@ export function Button({ children, onPress, disabled, loading }: ButtonProps) {
 
   return (
 
-    <Container onpress={onPress} disabled={disabled || loading}>
+    <Container onPress={onPress} disabled={disabled || loading}>
       {!loading && (
         <Text weight="600" color="#fff">{children}</Text>
       )}

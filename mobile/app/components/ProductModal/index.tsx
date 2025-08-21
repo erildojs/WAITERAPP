@@ -1,11 +1,11 @@
+import { Product } from "@/app/types/Product";
+import { formatCurrency } from "@/app/utils/formatCurrency";
 import React from "react";
 import { FlatList, Modal } from "react-native";
+import { Button } from "../Button";
+import { Close } from "../Icons/Close";
 import { Text } from "../Text";
 import { CloseButton, Footer, FooterContainer, Header, Image, Ingredient, IngredientsContainer, ModalBody, PriceContainer } from "./styles";
-import { Product } from "@/app/types/Product";
-import { Close } from "../Icons/Close";
-import { formatCurrency } from "@/app/utils/formatCurrency";
-import { Button } from "../Button";
 
 type ProductModalProps = {
   visible: boolean
@@ -24,13 +24,13 @@ export function ProductModal({ visible, onClose, product, onAddToCart }: Product
 
   return (
     <Modal visible={visible} animationType="slide"
-      presentationStyle="pagrSheet"
+      presentationStyle="pageSheet"
       onRequestClose={onClose}
     >
       <Image
         source={{ uri: `http://192.168.0.252:3001/uploads/${product.imagePath}` }}
       >
-        <CloseButton onpress={onClose}>
+        <CloseButton onPress={onClose}>
           <Close />
         </CloseButton>
       </Image>
