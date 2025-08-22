@@ -5,7 +5,8 @@ import { router } from './routes.js';
 import http from 'node:http'
 import { Server } from 'socket.io';
 import path from 'node:path';
-
+import swaggerUi from "swagger-ui-express"
+import swaggerFile from "../swagger.json"
 
 const app = express()
 const server = http.createServer(app)
@@ -19,6 +20,7 @@ app.use((request, response, next) => {//isso está aqui pk o cors não esta func
 })
 app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 app.use(express.json())
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use(router)
 
 mongoose.connect(process.env.DATABASE_URL)
