@@ -1,16 +1,12 @@
 services:
-  database:
-    image: bitnami/postgresql
+  mongodb:
+    image: bitnami/mongodb
     container_name: db_waiterapp
     ports:
-      - 5432:5432
-    environment:
-      - POSTGRESQL_USERNAME=iurd
-      - POSTGRESQL_PASSWORD=iurd
-      - POSTGRESQL_DATABASE=waiterapp
+      - 27017:27017
     volumes:
-      - pgdata:/data/postgres
+      - mongodata:/data/db
 
 volumes:
-  pgdata:
+  mongodata:
     driver: local
