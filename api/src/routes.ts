@@ -3,7 +3,6 @@ import { Category } from "./models/Category";
 import { Product } from "./models/Product";
 import multer from 'multer';
 import path from 'node:path';
-import { fileURLToPath } from "node:url";
 import { Order } from "./models/Order";
 import { io } from "./server";
 
