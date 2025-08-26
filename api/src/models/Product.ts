@@ -30,7 +30,7 @@ export const Product = model('products', new Schema({
       }
     }]
   },
-  category: {
+  category_Id: {
     type: Schema.Types.ObjectId,
     required: true,
     ref: 'categories'

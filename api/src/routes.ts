@@ -32,8 +32,8 @@ router.post('/categories', upload.single('imagePath'), async (request, response)
 
 router.post('/products', upload.single('imagePath'), async (request, response) => {
   const imagePath = request.file?.filename
-  const { name, description, price, category, ingredients } = request.body
-  const product = await Product.create({ name, description, imagePath, price, category, ingredients: ingredients ? JSON.parse(ingredients) : [] })
+  const { name, description, price, category_Id, ingredients } = request.body
+  const product = await Product.create({ name, description, imagePath, price, category_Id, ingredients: ingredients ? JSON.parse(ingredients) : [] })
   response.status(201).json(product)
 })
 
@@ -76,7 +76,7 @@ router.patch('/orders/:orderId', async (request, response) => {
       error: 'status should be one of theses, WAITING, IN_PRODUCTION, DONE'
     })
   }
-  const order = await Order.findByIdAndUpdate(orderId, {
+  await Order.findByIdAndUpdate(orderId, {
     status
   })
   response.sendStatus(204)
