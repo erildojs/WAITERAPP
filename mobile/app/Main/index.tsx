@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { CategoriesContainer, CenteredContainer, Container, Footer, FooterContainer, MenuContainer } from "./styles";
-import { Header } from "../components/Header";
-import { Categories } from "../components/Categories";
-import { Menu } from "../components/Menu";
-import { Button } from "../components/Button";
-import { TableModal } from "../components/TableModal";
-import { Cart } from "../components/Cart";
-import { CartItem } from "../types/CartItem";
-import { Product } from "../types/Product";
 import { ActivityIndicator } from "react-native";
+import { Button } from "../components/Button";
+import { Cart } from "../components/Cart";
+import { Categories } from "../components/Categories";
+import { Header } from "../components/Header";
 import { Empty } from "../components/Icons/Empty";
+import { Menu } from "../components/Menu";
+import { TableModal } from "../components/TableModal";
 import { Text } from "../components/Text";
+import { CartItem } from "../types/CartItem";
 import { Category } from "../types/Category";
+import { Product } from "../types/Product";
 import { api } from "../utils/api";
+import { CategoriesContainer, CenteredContainer, Container, Footer, FooterContainer, MenuContainer } from "./styles";
 
 export function Main() {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
@@ -128,7 +128,7 @@ export function Main() {
 
       </Container>
       <Footer>
-        <FooterContainer>//se der erro eh so comentar isso
+        <FooterContainer>{/** //se der erro eh so comentar isso */}
           {!selectedTable && (
             <Button
               onPress={() => setIsTableModalVisible(true)}

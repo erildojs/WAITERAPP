@@ -50,14 +50,13 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3333/products
-Content-Type: application/json
-
-###
 GET http://localhost:3333/categories/:categoryId/products
 Content-Type: application/json
 #params missing categoryId
 
+###
+GET http://localhost:3333/products
+Content-Type: application/json
 
 ###
 GET http://localhost:3333/orders

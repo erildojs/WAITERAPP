@@ -37,7 +37,7 @@ export function Menu({ onAddToCart, products }: MenuProps) {
           <ProductContainer onPress={() => handleOpenModal(product)}
           >
             <Image
-              //no mandroid o endereço é o ip
+              //no android o endereço é o ip
               source={{ uri: `http://192.168.0.252:3001/uploads/${product.imagePath}` }}
             />
             <ProductDetails>
