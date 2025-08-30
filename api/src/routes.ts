@@ -65,7 +65,7 @@ router.post('/orders', async (request, response) => {
   const order = await Order.create({ table, products })
   const orderDetails = await order.populate('products.product')
   io.emit('orders@new', orderDetails)
-  response.json(order)
+  response.status(201).json(order)
 })
 
 router.patch('/orders/:orderId', async (request, response) => {

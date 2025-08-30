@@ -39,24 +39,63 @@ Content-Type: application/json
 
 ###
 POST http://localhost:3333/products
+#Content-Type: application/json
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Pizza quatro queijos
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Deliciosa pizza quatro queijos com borda simples
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="imagePath"; filename="quatro-queijos.png"
+Content-Type: image/png
+
+< ./uploads/quatro-queijos.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="price"
+
+40
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="category_Id"
+
+68b08fe867c0ed17c7f2b730
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="ingredients"
+
+[
+  {
+    "name": "Mussarela",
+    "icon": "🧀"
+  },
+  {
+    "name": "Parmesão",
+    "icon": "🧀"
+  },
+  
+  {
+    "name": "Gouda",
+    "icon": "🧀"
+  },
+  
+  {
+    "name": "Brie",
+    "icon": "🧀"
+  }
+]
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+GET http://localhost:3333/products
 Content-Type: application/json
-#upload file config missing
-{
-  "name": "", 
-  "description": "",
-   "price": "", 
-   "category_Id": "", 
-   "ingredients": ""
-}
 
 ###
 GET http://localhost:3333/categories/:categoryId/products
 Content-Type: application/json
 #params missing categoryId
-
-###
-GET http://localhost:3333/products
-Content-Type: application/json
 
 ###
 GET http://localhost:3333/orders

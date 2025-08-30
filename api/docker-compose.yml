@@ -1,6 +1,6 @@
 services:
   mongodb:
-    image: bitnami/mongodb
+    image: mongo:8.0.13
     container_name: db_waiterapp
     ports:
       - 27017:27017
