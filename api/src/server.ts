@@ -9,7 +9,7 @@ import swaggerUi from "swagger-ui-express"
 import swaggerFile from "../swagger.json"
 import { runSeed } from "./database/seed.js";
 
-const app = express()
+export const app = express()
 const server = http.createServer(app)
 export const io = new Server(server)
 
@@ -27,10 +27,6 @@ app.use(router)
 mongoose.connect(process.env.DATABASE_URL)
   .then(() => {
     console.log('conectado no mongo')
-    server.listen(process.env.API_PORT || 3333, () => {
-      console.log('server is running 🚀');
-      console.log('Documentação no endereço: http://localhost:3333/docs');
-    })
     runSeed()
   })
   .catch(() => console.log('não conectado no mongo'))
