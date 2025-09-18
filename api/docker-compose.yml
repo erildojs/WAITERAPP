@@ -4,9 +4,4 @@ services:
     container_name: db_waiterapp
     ports:
       - 27017:27017
-    volumes:
-      - mongodata:/data/db
 
-volumes:
-  mongodata:
-    driver: local

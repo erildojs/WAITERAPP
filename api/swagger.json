@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3333"
+      "url": ""
     }
   ],
   "paths": {
@@ -21,7 +21,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Category" }
+                  "items": {
+                    "$ref": "#/components/schemas/Category"
+                  }
                 }
               }
             }
@@ -37,11 +39,21 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "icon": { "type": "string" },
-                  "name": { "type": "string" },
-                  "imagePath": { "type": "string", "format": "binary" }
+                  "icon": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "imagePath": {
+                    "type": "string",
+                    "format": "binary"
+                  }
                 },
-                "required": ["icon", "name"]
+                "required": [
+                  "icon",
+                  "name"
+                ]
               }
             }
           }
@@ -51,7 +63,9 @@
             "description": "Categoria criada",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Category" }
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
               }
             }
           }
@@ -68,7 +82,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Product" }
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
                 }
               }
             }
@@ -84,14 +100,33 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": { "type": "string" },
-                  "description": { "type": "string" },
-                  "price": { "type": "number" },
-                  "category": { "type": "string" },
-                  "ingredients": { "type": "string", "description": "JSON string array" },
-                  "imagePath": { "type": "string", "format": "binary" }
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "ingredients": {
+                    "type": "string",
+                    "description": "JSON string array"
+                  },
+                  "imagePath": {
+                    "type": "string",
+                    "format": "binary"
+                  }
                 },
-                "required": ["name", "description", "price", "category"]
+                "required": [
+                  "name",
+                  "description",
+                  "price",
+                  "category"
+                ]
               }
             }
           }
@@ -101,7 +136,9 @@
             "description": "Produto criado",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Product" }
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
               }
             }
           }
@@ -116,7 +153,9 @@
             "name": "categoryId",
             "in": "path",
             "required": true,
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -126,7 +165,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Product" }
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
                 }
               }
             }
@@ -144,7 +185,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Order" }
+                  "items": {
+                    "$ref": "#/components/schemas/Order"
+                  }
                 }
               }
             }
@@ -160,19 +203,28 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "table": { "type": "string" },
+                  "table": {
+                    "type": "string"
+                  },
                   "products": {
                     "type": "array",
                     "items": {
                       "type": "object",
                       "properties": {
-                        "product": { "type": "string" },
-                        "quantity": { "type": "number" }
+                        "product": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        }
                       }
                     }
                   }
                 },
-                "required": ["table", "products"]
+                "required": [
+                  "table",
+                  "products"
+                ]
               }
             }
           }
@@ -182,7 +234,9 @@
             "description": "Pedido criado",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Order" }
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
               }
             }
           }
@@ -197,7 +251,9 @@
             "name": "orderId",
             "in": "path",
             "required": true,
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -209,17 +265,27 @@
                 "properties": {
                   "status": {
                     "type": "string",
-                    "enum": ["WAITING", "IN_PRODUCTION", "DONE"]
+                    "enum": [
+                      "WAITING",
+                      "IN_PRODUCTION",
+                      "DONE"
+                    ]
                   }
                 },
-                "required": ["status"]
+                "required": [
+                  "status"
+                ]
               }
             }
           }
         },
         "responses": {
-          "204": { "description": "Status atualizado" },
-          "400": { "description": "Status inválido" }
+          "204": {
+            "description": "Status atualizado"
+          },
+          "400": {
+            "description": "Status inválido"
+          }
         }
       },
       "delete": {
@@ -229,11 +295,15 @@
             "name": "orderId",
             "in": "path",
             "required": true,
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
-          "204": { "description": "Pedido excluído" }
+          "204": {
+            "description": "Pedido excluído"
+          }
         }
       }
     }
@@ -243,49 +313,86 @@
       "Category": {
         "type": "object",
         "properties": {
-          "_id": { "type": "string" },
-          "name": { "type": "string" },
-          "icon": { "type": "string" }
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          }
         }
       },
       "Product": {
         "type": "object",
         "properties": {
-          "_id": { "type": "string" },
-          "name": { "type": "string" },
-          "description": { "type": "string" },
-          "imagePath": { "type": "string" },
-          "price": { "type": "number" },
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "imagePath": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
           "ingredients": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "name": { "type": "string" },
-                "icon": { "type": "string" }
+                "name": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                }
               }
             }
           },
-          "category": { "type": "string" }
+          "category": {
+            "type": "string"
+          }
         }
       },
       "Order": {
         "type": "object",
         "properties": {
-          "_id": { "type": "string" },
-          "table": { "type": "string" },
+          "_id": {
+            "type": "string"
+          },
+          "table": {
+            "type": "string"
+          },
           "status": {
             "type": "string",
-            "enum": ["WAITING", "IN_PRODUCTION", "DONE"]
+            "enum": [
+              "WAITING",
+              "IN_PRODUCTION",
+              "DONE"
+            ]
           },
-          "created_at": { "type": "string", "format": "date-time" },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "products": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "product": { "$ref": "#/components/schemas/Product" },
-                "quantity": { "type": "number" }
+                "product": {
+                  "$ref": "#/components/schemas/Product"
+                },
+                "quantity": {
+                  "type": "number"
+                }
               }
             }
           }

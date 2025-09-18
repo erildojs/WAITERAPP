@@ -27,6 +27,10 @@ app.use(router)
 mongoose.connect(process.env.DATABASE_URL)
   .then(() => {
     console.log('conectado no mongo')
+    server.listen(process.env.API_PORT || 3333, () => {
+      console.log('server is running 🚀');
+      console.log('Documentação no endereço: http://localhost:3333/docs');
+    })
     runSeed()
   })
   .catch(() => console.log('não conectado no mongo'))

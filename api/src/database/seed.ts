@@ -26,12 +26,10 @@ const categoryImages = {
     "suco-de-laranja.png"
   ]
 };
-
 // Garante que a pasta uploads exista
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
 }
-
 // Função para copiar uma imagem do assets para uploads
 function copyImageFromAssets(fileName, destName) {
   const srcPath = path.join(assetsDir, fileName);
@@ -39,17 +37,12 @@ function copyImageFromAssets(fileName, destName) {
   fs.copyFileSync(srcPath, destPath);
   return destName;
 }
-
 export async function runSeed() {
   try {
     await mongoose.connect("mongodb://localhost:27017/waiterapp");
-
     // Limpar dados antigos
     await Category.deleteMany();
     await Product.deleteMany();
-
-    console.log("📦 Banco limpo!");
-
     // Criar categorias
     const categoriesData = [
       { icon: "🍕", name: "pizza" },
@@ -57,21 +50,15 @@ export async function runSeed() {
       { icon: "🍔", name: "hamburgueres" },
       { icon: "📋", name: "promoçoes" }
     ];
-
     const categories = await Category.insertMany(categoriesData);
-    console.log(`✅ ${categories.length} categorias criadas.`);
-
     // Função para gerar produtos fictícios com imagens relacionadas
     function generateProducts(category) {
       const products = [];
       const images = categoryImages[category.name];
-
       for (let i = 1; i <= 20; i++) {
         const randomImage = images[Math.floor(Math.random() * images.length)];
         const newImageName = `${category.name}-${i}${path.extname(randomImage)}`;
-
         copyImageFromAssets(randomImage, newImageName);
-
         products.push({
           name: `${category.name} ${i}`,
           description: `Descrição deliciosa do produto ${i} da categoria ${category.name}.`,
@@ -85,26 +72,20 @@ export async function runSeed() {
           category_Id: category._id
         });
       }
-
       return products;
     }
-
     // Criar produtos para cada categoria
     let allProducts = [];
     categories.forEach(category => {
       const products = generateProducts(category);
       allProducts = allProducts.concat(products);
     });
-
     const createdProducts = await Product.insertMany(allProducts);
-    console.log(`✅ ${createdProducts.length} produtos criados com imagens relacionadas.`);
-
-    console.log("🎉 Seed finalizado com sucesso!");
+    console.log("🎉 sucesso!");
     process.exit();
   } catch (err) {
     console.error("❌ Erro no seed:", err);
     process.exit(1);
   }
 }
-
 runSeed();
