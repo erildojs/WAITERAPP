@@ -120,4 +120,8 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3333/orders/:orderId
+<<<<<<< HEAD
 Content-Type: application/json
+=======
+Content-Type: application/json
+>>>>>>> main

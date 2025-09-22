@@ -1,16 +1,12 @@
 import { Router } from "express";
-import { Category } from "./models/Category.ts";
-import { Product } from "./models/Product.ts";
+import { Category } from "./models/Category";
+import { Product } from "./models/Product";
 import multer from 'multer';
-import path from 'node:path'
-import { fileURLToPath } from "node:url";
-import { Order } from "./models/Order.ts";
-import { io } from "./server.ts";
+import path from 'node:path';
+import { Order } from "./models/Order";
+import { io } from "./server";
 
 export const router = Router()
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -36,8 +32,8 @@ router.post('/categories', upload.single('imagePath'), async (request, response)
 
 router.post('/products', upload.single('imagePath'), async (request, response) => {
   const imagePath = request.file?.filename
-  const { name, description, price, category, ingredients } = request.body
-  const product = await Product.create({ name, description, imagePath, price, category, ingredients: ingredients ? JSON.parse(ingredients) : [] })
+  const { name, description, price, category_Id, ingredients } = request.body
+  const product = await Product.create({ name, description, imagePath, price, category_Id, ingredients: ingredients ? JSON.parse(ingredients) : [] })
   response.status(201).json(product)
 })
 
@@ -69,7 +65,7 @@ router.post('/orders', async (request, response) => {
   const order = await Order.create({ table, products })
   const orderDetails = await order.populate('products.product')
   io.emit('orders@new', orderDetails)
-  response.json(order)
+  response.status(201).json(order)
 })
 
 router.patch('/orders/:orderId', async (request, response) => {
@@ -80,7 +76,7 @@ router.patch('/orders/:orderId', async (request, response) => {
       error: 'status should be one of theses, WAITING, IN_PRODUCTION, DONE'
     })
   }
-  const order = await Order.findByIdAndUpdate(orderId, {
+  await Order.findByIdAndUpdate(orderId, {
     status
   })
   response.sendStatus(204)

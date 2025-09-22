@@ -5,4 +5,9 @@ coverage
 .env
 !uploads/.gitkeep
 dist
+<<<<<<< HEAD
 package-lock.json
+=======
+package-lock.json
+generated
+>>>>>>> main
