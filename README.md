@@ -1,3 +1,7 @@
+<h1 align="center">
+	<img alt="Barber" src=".assets/capa.png" />
+</h1>
+
 # 🍽️ WaiterApp
 
 Sistema completo de gerenciamento de restaurante com aplicativo mobile para garçons, painel web para administração e API backend.
