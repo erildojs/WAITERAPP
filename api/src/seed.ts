@@ -1,0 +1,4 @@
+/**
+ * criar categorieas
+ * criar produtos
+ */
