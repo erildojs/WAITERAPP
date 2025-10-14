@@ -1,0 +1,109 @@
+POST http://localhost:3333/categories
+Accept: application/json
+
+{
+  "name": "Bebidas",
+  "icon": "🍹"
+}
+###
+POST http://localhost:3333/categories
+Accept: application/json
+
+{
+  "name": "Hamburgueres",
+  "icon": "🍔"
+}
+###
+POST http://localhost:3333/categories
+Accept: application/json
+
+{
+  "name": "Promocoes",
+  "icon": "🏷️"
+}
+###
+POST http://localhost:3333/categories
+Accept: application/json
+
+{
+  "name": "Pizza",
+  "icon": "🍕"
+}
+###
+GET http://localhost:3333/categories
+Accept: application/json
+
+###
+GET http://localhost:3333/products
+Content-Type: application/json
+
+###
+POST http://localhost:3333/products
+Content-Type: application/json  
+
+{
+  "name": "Pizza quatro queijos",
+  "description": "delicionsa pizza quatro queijos com borda simples",
+  "image": "new_product.png",
+  "price": 3000,
+  "category_id": "uuid",
+  "ingredients": [
+    { "name": "Mussarela", "icon": "🧀" },
+    { "name": "Parmesão", "icon": "🧀" },
+    { "name": "Gorgonzola", "icon": "🧀" },
+    { "name": "Catupiry", "icon": "🧀" }
+  ]
+}
+
+###
+POST http://localhost:3333/products
+Content-Type: application/json  
+
+{
+  "name": "coca-cola",
+  "description": "lata geladinha",
+  "image": "",
+  "price": 700,
+  "category_id": "uuid",
+}
+
+###
+POST http://localhost:3333/products
+Content-Type: application/json  
+
+{
+  "name": "suco de laranja",
+  "description": "delicionso suco de laranja natural",
+  "image": "",
+  "price": 1500,
+  "category_id": "uuid",
+  "ingredients": [
+    { "name": "laranja", "icon": "🧀" },
+    { "name": "manjericao", "icon": "🧀" },
+  ]
+}
+
+###
+POST http://localhost:3333/products
+Content-Type: application/json  
+
+{
+  "name": "Pizza quatro queijos",
+  "description": "delicionsa pizza quatro queijos com borda simples",
+  "image": "new_product.png",
+  "price": 3000,
+  "category_id": "uuid",
+  "ingredients": [
+    { "name": "Mussarela", "icon": "🧀" },
+    { "name": "Parmesão", "icon": "🧀" },
+    { "name": "Gorgonzola", "icon": "🧀" },
+    { "name": "Catupiry", "icon": "🧀" }
+  ]
+}
+###
+GET http://localhost:3333/products
+Accept: application/json
+
+###
+GET http://localhost:3333/categories/68ea5025a09416dd52f7ecda/products
+Accept: application/json 
