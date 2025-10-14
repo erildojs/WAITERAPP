@@ -23,8 +23,10 @@ app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')))
 app.use(express.json())
 app.use(router)
 
-mongoose.connect('mongodb://db_waiterapp:27017/waiterappdb')
-  .then(() => console.log('conectado no mongo'))
+mongoose.connect('mongodb+srv://erildo:iurd2022@cluster0.kecojiz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+  .then(() => {
+    console.log('conectado no mongo')
+  })
   .catch(() => console.log('não conectado no mongo'))
 
 server.listen(3333, () => {
