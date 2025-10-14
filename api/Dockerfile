@@ -1,13 +1,11 @@
-FROM node
+FROM node:22-alpine AS builder
 
-WORKDIR /usr/app
+WORKDIR /app
 
-COPY package.json .
+COPY . ./
 
-RUN npm install
-
-COPY . .
+RUN npm ci
 
 EXPOSE 3333
 
-CMD [ "npm", "run", "dev" ]
+CMD ["node", "src/server.ts"]

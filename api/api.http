@@ -107,3 +107,31 @@ Accept: application/json
 ###
 GET http://localhost:3333/categories/68ea5025a09416dd52f7ecda/products
 Accept: application/json 
+
+###
+POST http://localhost:3333/orders
+Accept: application/json
+
+{
+  "table": "4",
+  "products": [
+    { "product": "uuid", "quantity": 2 },
+    { "product": "uuid", "quantity": 1 }
+  ]
+}
+
+###
+GET http://localhost:3333/orders
+Accept: application/json
+
+###
+PATCH http://localhost:3333/orders/uuid
+Accept: application/json
+
+{
+  "status": "DONE"
+}
+
+###
+DELETE http://localhost:3333/orders/uuid
+
