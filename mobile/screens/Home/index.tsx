@@ -23,6 +23,10 @@ export function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
+  /**
+   * no mobile quando consomo uma api, o localhost nao funciona, 
+   * o que funciona é o ip da maquina
+   */
   useEffect(() => {
     Promise.all([
       api.get('/categories'),
@@ -44,10 +48,6 @@ export function Home() {
   function handleSaveTable(table: string) {
     setSelectedTable(table)
   }
-  function handleCancelOrder() {
-    setSelectedTable('')
-    setCartItems([])
-  }
   function handleAddToCart(product: Product) {
     if (!selectedTable) {
       setIsTableModalVisible(true)
@@ -67,7 +67,6 @@ export function Home() {
     })
   }
   function handleDecrementCartItem(product: Product) {
-
     setCartItems((prevState) => {
       const itemIndex = prevState.findIndex((cartItem) => cartItem.product._id === product._id)
       const item = prevState[itemIndex]
