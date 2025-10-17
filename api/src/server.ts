@@ -26,8 +26,6 @@ app.use(router)
 mongoose.connect('mongodb+srv://erildo:iurd2022@cluster0.kecojiz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => {
     console.log('conectado no mongo')
-    server.listen(3333, () => {
-      console.log('server is running 🚀');
-    })
+    server.listen(3333, () => console.log('server started'))
   })
   .catch(() => console.log('não conectado no mongo'))
