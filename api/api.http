@@ -41,65 +41,106 @@ Content-Type: application/json
 POST http://localhost:3333/products
 Content-Type: application/json  
 
-{
-  "name": "Pizza quatro queijos",
-  "description": "delicionsa pizza quatro queijos com borda simples",
-  "image": "new_product.png",
-  "price": 3000,
-  "category_id": "uuid",
-  "ingredients": [
-    { "name": "Mussarela", "icon": "🧀" },
-    { "name": "Parmesão", "icon": "🧀" },
-    { "name": "Gorgonzola", "icon": "🧀" },
-    { "name": "Catupiry", "icon": "🧀" }
-  ]
-}
+POST http://localhost:3333/products
+Content-Type: multipart/form-data; boundary=boundary123
+
+--boundary123
+Content-Disposition: form-data; name="name"
+
+Pizza quatro queijos
+--boundary123
+Content-Disposition: form-data; name="description"
+
+deliciosa pizza quatro queijos com borda simples
+--boundary123
+Content-Disposition: form-data; name="image"; filename="quatro-queijos.png"
+Content-Type: image/png
+
+< C:\Users\Erildo\Desktop\www\WAITERAPP/api/uploads/quatro-queijos.png
+--boundary123
+Content-Disposition: form-data; name="price"
+
+3000
+--boundary123
+Content-Disposition: form-data; name="category_id"
+
+68ea5025a09416dd52f7ecda
+--boundary123
+Content-Disposition: form-data; name="ingredients"
+
+[
+  { "name": "Mussarela", "icon": "🧀" },
+  { "name": "Parmesão", "icon": "🧀" },
+  { "name": "Gorgonzola", "icon": "🧀" },
+  { "name": "Catupiry", "icon": "🧀" }
+]
+--boundary123--
+
+###
+POST http://localhost:3333/products
+Content-Type: multipart/form-data; boundary=boundary123
+
+--boundary123
+Content-Disposition: form-data; name="name"
+
+coca-cola
+--boundary123
+Content-Disposition: form-data; name="description"
+
+lata geladinha
+--boundary123
+Content-Disposition: form-data; name="image"; filename="coca-cola.png"
+Content-Type: image/png
+
+< C:\Users\Erildo\Desktop\www\coca-cola.png
+--boundary123
+Content-Disposition: form-data; name="price"
+
+700
+--boundary123
+Content-Disposition: form-data; name="category_id"
+
+68ea5025a09416dd52f7ecdb
+--boundary123--
+
+###
+POST http://localhost:3333/products
+Content-Type: multipart/form-data; boundary=boundary123
+
+--boundary123
+Content-Disposition: form-data; name="name"
+
+suco de laranja
+--boundary123
+Content-Disposition: form-data; name="description"
+
+delicioso suco de laranja natural
+--boundary123
+Content-Disposition: form-data; name="image"; filename="suco.png"
+Content-Type: image/png
+
+< C:\Users\SeuUsuario\Desktop\www\suco.png
+--boundary123
+Content-Disposition: form-data; name="price"
+
+1500
+--boundary123
+Content-Disposition: form-data; name="category_id"
+
+68ea5025a09416dd52f7ecdb
+--boundary123
+Content-Disposition: form-data; name="ingredients"
+
+[
+  { "name": "laranja", "icon": "🍊" },
+  { "name": "manjericao", "icon": "🌿" }
+]
+--boundary123--
 
 ###
 POST http://localhost:3333/products
 Content-Type: application/json  
 
-{
-  "name": "coca-cola",
-  "description": "lata geladinha",
-  "image": "",
-  "price": 700,
-  "category_id": "uuid",
-}
-
-###
-POST http://localhost:3333/products
-Content-Type: application/json  
-
-{
-  "name": "suco de laranja",
-  "description": "delicionso suco de laranja natural",
-  "image": "",
-  "price": 1500,
-  "category_id": "uuid",
-  "ingredients": [
-    { "name": "laranja", "icon": "🧀" },
-    { "name": "manjericao", "icon": "🧀" },
-  ]
-}
-
-###
-POST http://localhost:3333/products
-Content-Type: application/json  
-
-{
-  "name": "Pizza quatro queijos",
-  "description": "delicionsa pizza quatro queijos com borda simples",
-  "image": "new_product.png",
-  "price": 3000,
-  "category_id": "uuid",
-  "ingredients": [
-    { "name": "Mussarela", "icon": "🧀" },
-    { "name": "Parmesão", "icon": "🧀" },
-    { "name": "Gorgonzola", "icon": "🧀" },
-    { "name": "Catupiry", "icon": "🧀" }
-  ]
-}
 ###
 GET http://localhost:3333/products
 Accept: application/json

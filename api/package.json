@@ -6,13 +6,16 @@
     "restaurants",
     "food"
   ],
+  "engines": {
+    "node": ">= 22"
+  },
   "license": "ISC",
   "author": "ErildoJS",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "",
-    "dev": "node --experimental-strip-types --watch src/server.ts"
+    "dev": "node --env-file .env --watch src/server.ts",
+    "se": "node --env-file .env src/seed.ts"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",

@@ -14,7 +14,8 @@ const server = http.createServer(app)
 export const io = new Server(server)
 
 app.use((request, response, next) => {//isso está aqui pk o cors não esta funcionando na web
-  response.header('Access-Control-Allow-Origin', ' http://localhost:5173')
+  const origin = process.env['FRONT-END_URL'] ?? '*'
+  response.header('Access-Control-Allow-Origin', origin)
   response.header('Access-Control-Allow-Methods', '*')
   response.header('Access-Control-Allow-Headers', '*')
   next()
@@ -23,9 +24,9 @@ app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')))
 app.use(express.json())
 app.use(router)
 
-mongoose.connect('mongodb+srv://erildo:iurd2022@cluster0.kecojiz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGO_URL!)
   .then(() => {
     console.log('conectado no mongo')
-    server.listen(3333, () => console.log('server started'))
+    server.listen(process.env.API_PORT || 3333, () => console.log('server started'))
   })
   .catch(() => console.log('não conectado no mongo'))
