@@ -1,37 +1,41 @@
 POST http://localhost:3333/categories
-Accept: application/json
+Content-Type: application/json
 
 {
   "name": "Bebidas",
   "icon": "🍹"
 }
+
 ###
 POST http://localhost:3333/categories
-Accept: application/json
+Content-Type: application/json
 
 {
   "name": "Hamburgueres",
   "icon": "🍔"
 }
+
 ###
 POST http://localhost:3333/categories
-Accept: application/json
+Content-Type: application/json
 
 {
   "name": "Promocoes",
   "icon": "🏷️"
 }
+
 ###
 POST http://localhost:3333/categories
-Accept: application/json
+Content-Type: application/json
 
 {
   "name": "Pizza",
   "icon": "🍕"
 }
+
 ###
 GET http://localhost:3333/categories
-Accept: application/json
+Content-Type: application/json
 
 ###
 GET http://localhost:3333/products
@@ -41,31 +45,32 @@ Content-Type: application/json
 POST http://localhost:3333/products
 Content-Type: application/json  
 
+###
 POST http://localhost:3333/products
-Content-Type: multipart/form-data; boundary=boundary123
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
---boundary123
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="name"
 
 Pizza quatro queijos
---boundary123
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="description"
 
 deliciosa pizza quatro queijos com borda simples
---boundary123
-Content-Disposition: form-data; name="image"; filename="quatro-queijos.png"
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="imagePath"; filename="quatro-queijos.png"
 Content-Type: image/png
 
 < C:\Users\Erildo\Desktop\www\WAITERAPP/api/uploads/quatro-queijos.png
---boundary123
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="price"
 
 3000
---boundary123
-Content-Disposition: form-data; name="category_id"
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="categoryId"
 
 68ea5025a09416dd52f7ecda
---boundary123
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="ingredients"
 
 [
@@ -74,84 +79,80 @@ Content-Disposition: form-data; name="ingredients"
   { "name": "Gorgonzola", "icon": "🧀" },
   { "name": "Catupiry", "icon": "🧀" }
 ]
---boundary123--
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###
 POST http://localhost:3333/products
-Content-Type: multipart/form-data; boundary=boundary123
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
---boundary123
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="name"
 
 coca-cola
---boundary123
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="description"
 
 lata geladinha
---boundary123
-Content-Disposition: form-data; name="image"; filename="coca-cola.png"
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="imagePath"; filename="coca-cola.png"
 Content-Type: image/png
 
 < C:\Users\Erildo\Desktop\www\coca-cola.png
---boundary123
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="price"
 
 700
---boundary123
-Content-Disposition: form-data; name="category_id"
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="categoryId"
 
 68ea5025a09416dd52f7ecdb
---boundary123--
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###
 POST http://localhost:3333/products
-Content-Type: multipart/form-data; boundary=boundary123
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
---boundary123
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="name"
 
 suco de laranja
---boundary123
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="description"
 
 delicioso suco de laranja natural
---boundary123
-Content-Disposition: form-data; name="image"; filename="suco.png"
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="imagePath"; filename="suco-de-laranja.png"
 Content-Type: image/png
 
-< C:\Users\SeuUsuario\Desktop\www\suco.png
---boundary123
+< C:\Users\SeuUsuario\Desktop\www\suco-de-laranja.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="price"
 
 1500
---boundary123
-Content-Disposition: form-data; name="category_id"
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="categoryId"
 
 68ea5025a09416dd52f7ecdb
---boundary123
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="ingredients"
 
 [
   { "name": "laranja", "icon": "🍊" },
   { "name": "manjericao", "icon": "🌿" }
 ]
---boundary123--
-
-###
-POST http://localhost:3333/products
-Content-Type: application/json  
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###
 GET http://localhost:3333/products
-Accept: application/json
+Content-Type: application/json
 
 ###
-GET http://localhost:3333/categories/68ea5025a09416dd52f7ecda/products
-Accept: application/json 
+GET http://localhost:3333/categories/68ea5025a09416dd52f7ecdb/products
+Content-Type: application/json 
 
 ###
 POST http://localhost:3333/orders
-Accept: application/json
+Content-Type: application/json
 
 {
   "table": "4",
@@ -163,11 +164,11 @@ Accept: application/json
 
 ###
 GET http://localhost:3333/orders
-Accept: application/json
+Content-Type: application/json
 
 ###
 PATCH http://localhost:3333/orders/uuid
-Accept: application/json
+Content-Type: application/json
 
 {
   "status": "DONE"

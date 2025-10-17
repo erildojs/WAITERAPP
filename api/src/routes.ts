@@ -36,8 +36,8 @@ router.post('/categories', upload.single('imagePath'), async (request, response)
 
 router.post('/products', upload.single('imagePath'), async (request, response) => {
   const imagePath = request.file?.filename
-  const { name, description, price, category, ingredients } = request.body
-  const product = await Product.create({ name, description, imagePath, price, category, ingredients: ingredients ? JSON.parse(ingredients) : [] })
+  const { name, description, price, categoryId, ingredients } = request.body
+  const product = await Product.create({ name, description, imagePath, price, categoryId, ingredients: ingredients ? JSON.parse(ingredients) : [] })
   response.status(201).json(product)
 })
 
@@ -54,7 +54,7 @@ router.get('/categories/:categoryId/products', async (request, response) => {
   //     message: 'categoryId not found'
   //   })
   // }
-  const products = await Product.find().where('category').equals(categoryId)
+  const products = await Product.find().where('categoryId').equals(categoryId)
   response.json(products)
 })
 
