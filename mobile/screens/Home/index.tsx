@@ -24,7 +24,7 @@ export function Home() {
   const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
   /**
-   * no mobile quando consomo uma api, o localhost nao funciona, 
+   * no mobile quando consumo uma api, o localhost não funciona, 
    * o que funciona é o ip da maquina
    */
   useEffect(() => {
@@ -124,7 +124,6 @@ export function Home() {
             )}
           </>
         )}
-
       </Container>
       <Footer>
         <FooterContainer>
@@ -146,7 +145,6 @@ export function Home() {
           )}
         </FooterContainer>
       </Footer>
-
       <TableModal visible={isTableModalVisible} onClose={() => setIsTableModalVisible(false)} onSave={handleSaveTable} />
     </>
   )
