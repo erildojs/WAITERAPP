@@ -28,7 +28,7 @@ export function ProductModal({ visible, onClose, product, onAddToCart }: Product
       presentationStyle="pageSheet"
     >
       <Image
-        source={{ uri: `http://192.168.8.32:3333/uploads/${product.imagePath}` }}
+        source={{ uri: `http://192.168.8.36:3333/uploads/${product.imagePath}` }}
       >
         <CloseButton onPress={onClose}>
           <Close />

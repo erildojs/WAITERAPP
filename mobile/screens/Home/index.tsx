@@ -119,7 +119,7 @@ export function Home() {
             ) : (
               <CenteredContainer>
                 <Empty />
-                <Text style={{ marginTop: 24 }} color="#666">Nenhum produto foi encontrado</Text>
+                <Text style={{ marginTop: 14 }} color="#666">Nenhum produto foi encontrado</Text>
               </CenteredContainer>
             )}
           </>

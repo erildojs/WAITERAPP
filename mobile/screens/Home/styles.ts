@@ -12,7 +12,7 @@ export const Container = styled(SafeAreaView)`
 
 export const CategoriesContainer = styled.View`
   height: 73px;
-  margin-top: 34px;
+  margin-top: 14px;
 `
 
 export const MenuContainer = styled.View`

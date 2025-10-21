@@ -38,7 +38,7 @@ export function Menu({ onAddToCart, products }: MenuProps) {
           >
             <Image
               //no android o endereço é o ip
-              source={{ uri: `http://192.168.8.32:3333/uploads/${product.imagePath}` }}
+              source={{ uri: `http://192.168.8.36:3333/uploads/${product.imagePath}` }}
             />
             <ProductDetails>
               <Text weight="600">{product.name}</Text>
