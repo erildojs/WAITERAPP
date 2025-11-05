@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 import { Product } from "../../types/Product";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { Empty } from "../Icons/Empty";
 import { PlusCircle } from "../Icons/PlusCircle";
 import { ProductModal } from "../ProductModal";
 import { Text } from "../Text";
-import { AddToCardButton, Image, ProductContainer, ProductDetails, Separator } from "./styles";
+import { AddToCardButton, CenteredContainer, Image, ProductContainer, ProductDetails, Separator } from "./styles";
 
 type MenuProps = {
   onAddToCart: (product: Product) => void;
@@ -38,9 +39,10 @@ export function Menu({ onAddToCart, products, refreshing = false, onRefresh }: M
         refreshing={refreshing}
         onRefresh={onRefresh}
         ListEmptyComponent={(
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text color="#666">Nenhum produto foi encontrado</Text>
-          </View>
+          <CenteredContainer>
+            <Empty />
+            <Text color='#666' style={{ marginTop: 24 }}>Nenhum produto foi encontrado!</Text>
+          </CenteredContainer>
         )}
         renderItem={({ item: product }) => (
           <ProductContainer onPress={() => handleOpenModal(product)}

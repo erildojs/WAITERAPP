@@ -28,3 +28,9 @@ export const AddToCardButton = styled.TouchableOpacity`
   bottom: 0;
   right: 0;
 `
+
+export const CenteredContainer = styled.View`
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+`
