@@ -4,10 +4,8 @@ import { Button } from "../../components/Button";
 import { Cart } from "../../components/Cart";
 import { Categories } from "../../components/Categories";
 import { Header } from "../../components/Header";
-import { Empty } from "../../components/Icons/Empty";
 import { Menu } from "../../components/Menu";
 import { TableModal } from "../../components/TableModal";
-import { Text } from "../../components/Text";
 import { CartItem } from "../../types/CartItem";
 import { Category } from "../../types/Category";
 import { Product } from "../../types/Product";
@@ -22,6 +20,7 @@ export function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoadingProducts, setIsLoadingProducts] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   /**
    * no mobile quando consumo uma api, o localhost não funciona, 
@@ -44,6 +43,19 @@ export function Home() {
     const { data } = await api.get(route)
     setProducts(data as Product[])
     setIsLoadingProducts(false)
+  }
+  async function handleRefresh() {
+    try {
+      setIsRefreshing(true)
+      const [categoriesResponse, productsResponse] = await Promise.all([
+        api.get('/categories'),
+        api.get('/products')
+      ])
+      setCategories(categoriesResponse.data as Category[])
+      setProducts(productsResponse.data as Product[])
+    } finally {
+      setIsRefreshing(false)
+    }
   }
   function handleSaveTable(table: string) {
     setSelectedTable(table)
@@ -111,16 +123,14 @@ export function Home() {
           </CenteredContainer>
         ) : (
           <>
-            {products.length > 0 ? (
-              <MenuContainer>
-                <Menu onAddToCart={handleAddToCart} products={products} />
-              </MenuContainer>
-            ) : (
-              <CenteredContainer>
-                <Empty />
-                <Text style={{ marginTop: 14 }} color="#666">Nenhum produto foi encontrado</Text>
-              </CenteredContainer>
-            )}
+            <MenuContainer>
+              <Menu
+                onAddToCart={handleAddToCart}
+                products={products}
+                refreshing={isRefreshing}
+                onRefresh={handleRefresh}
+              />
+            </MenuContainer>
           </>
         )}
       </Container>

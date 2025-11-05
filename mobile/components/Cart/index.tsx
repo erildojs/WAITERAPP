@@ -61,7 +61,9 @@ export function Cart({ cartItems, onAdd, onDecrement, onConfirmOrder, selectedTa
                 </QuantityContainer>
                 <ProductDetails>
                   <Text size={14} weight="600">{cartItem.product.name}</Text>
-                  <Text size={14} color="#666" style={{ marginTop: 4 }}>{formatCurrency(cartItem.product.price)}</Text>
+                  <Text size={14} color="#666" style={{ marginTop: 4 }}>
+                    {formatCurrency(cartItem.product.price)}
+                  </Text>
                 </ProductDetails>
               </ProductContainer>
               <Actions>
@@ -83,7 +85,7 @@ export function Cart({ cartItems, onAdd, onDecrement, onConfirmOrder, selectedTa
           {cartItems.length > 0 ? (
             <>
               <Text color="#666">Total</Text>
-              <Text size={20} weight="600">formatCurrency(total)</Text>
+              <Text size={20} weight="600">{formatCurrency(total)}</Text>
             </>
           ) : (
             <Text color="#999">Seu carrinho está vazio</Text>

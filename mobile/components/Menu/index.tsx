@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 import { Product } from "../../types/Product";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { PlusCircle } from "../Icons/PlusCircle";
@@ -10,9 +10,11 @@ import { AddToCardButton, Image, ProductContainer, ProductDetails, Separator } f
 type MenuProps = {
   onAddToCart: (product: Product) => void;
   products: Product[];
+  refreshing?: boolean;
+  onRefresh?: () => void;
 }
 
-export function Menu({ onAddToCart, products }: MenuProps) {
+export function Menu({ onAddToCart, products, refreshing = false, onRefresh }: MenuProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<null | Product>(null);
   function handleOpenModal(product: Product) {
@@ -31,8 +33,15 @@ export function Menu({ onAddToCart, products }: MenuProps) {
         data={products}
         keyExtractor={product => product._id}
         style={{ marginTop: 32 }}
-        contentContainerStyle={{ paddingHorizontal: 24 }}
+        contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24, flexGrow: 1 }}
         ItemSeparatorComponent={Separator}
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+        ListEmptyComponent={(
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text color="#666">Nenhum produto foi encontrado</Text>
+          </View>
+        )}
         renderItem={({ item: product }) => (
           <ProductContainer onPress={() => handleOpenModal(product)}
           >
@@ -45,7 +54,6 @@ export function Menu({ onAddToCart, products }: MenuProps) {
               <Text size={14} color="#666" style={{ marginVertical: 8 }}>{product.description}</Text>
               <Text size={14} weight="600">{formatCurrency(product.price)}</Text>
             </ProductDetails>
-
             <AddToCardButton onPress={() => onAddToCart(product)}>
               <PlusCircle />
             </AddToCardButton>
