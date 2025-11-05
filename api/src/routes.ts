@@ -38,7 +38,12 @@ router.post('/products', upload.single('imagePath'), async (request, response) =
   const imagePath = request.file?.filename
   const { name, description, price, categoryId, ingredients } = request.body
   const product = await Product.create({ name, description, imagePath, price, categoryId, ingredients: ingredients ? JSON.parse(ingredients) : [] })
-  response.status(201).json(product)
+  const productObject = product.toObject ? product.toObject() : product
+  const productWithFullImageUrl = {
+    ...productObject,
+    imagePath: imagePath ? `http://localhost:3333/uploads/${imagePath}` : undefined,
+  }
+  response.status(201).json(productWithFullImageUrl)
 })
 
 router.get('/products', async (request, response) => {
