@@ -90,7 +90,9 @@ export function Home() {
   return (
     <>
       <Container>
-        <Header selectedTable={selectedTable} onCancelOrder={handleResetOrder} />
+        <Header
+          selectedTable={selectedTable}
+          onCancelOrder={handleResetOrder} />
         {isLoading && (
           <CenteredContainer>
             <ActivityIndicator size="large" color="#D73035" />
@@ -101,9 +103,6 @@ export function Home() {
             <CategoriesContainer>
               <Categories categories={categories} onSelectCategory={handleSelectCategory} />
             </CategoriesContainer>
-            <MenuContainer>
-              <Menu onAddToCart={handleAddToCart} products={products} />
-            </MenuContainer>
           </>
         )}
         {isLoadingProducts ? (
